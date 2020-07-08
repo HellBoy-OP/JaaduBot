@@ -51,7 +51,7 @@ async def _(event):
     pack = 1
     userid = event.from_id
     packname = f"{user.first_name}'s JaaduBot Vol.{pack}"
-    packshortname = f"pack_{pack}_with_{userid}"
+    packshortname = f"fav_{pack}_with_{userid}"
     await event.edit("`Wo dekh Kya Mast Maal Aari Hai!`**🤤🤤**\n`Me is sticker ko chura rha hu`**😙😙**")
 
     is_a_s = is_it_animated_sticker(reply_message)
@@ -114,7 +114,7 @@ async def _(event):
                 await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                 return
             elif response.text == "Sorry, this short name is unacceptable.":
-                packshortname = f"pack_{pack}_animated_{user.id}"
+                packshortname = f"fav_{pack}_animated_{user.id}"
                 await silently_send_message(bot_conv, packshortname)
         else:
             await silently_send_message(bot_conv, "/cancel")
