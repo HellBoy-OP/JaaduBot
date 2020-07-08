@@ -51,7 +51,7 @@ async def _(event):
     pack = 1
     userid = event.from_id
     packname = f"{user.first_name}'s JaaduBot Vol.{pack}"
-    packshortname = f"vol_{pack}_with_{userid}"
+    packshortname = f"pack_{pack}_with_{userid}"
     await event.edit("`Wo dekh Kya Mast Maal Aari Hai!`**🤤🤤**\n`Me is sticker ko chura rha hu`**😙😙**")
 
     is_a_s = is_it_animated_sticker(reply_message)
@@ -65,7 +65,7 @@ async def _(event):
         #if userid == 719877937:
         #    packshortname = "JaaduBot_Animated"
         #else:
-        packshortname = f"{user.id}'s_animated_{pack}" # format: Uni_Borg_userid
+        packshortname = f"JaaduBot's_animated_{pack}" # format: Uni_Borg_userid
     elif not is_message_image(reply_message):
         await event.edit("Invalid message type")
         return
@@ -131,7 +131,7 @@ async def _(event):
                     pack += 1
                     prevv = int(pack) - 1
                     packname = f"{user.first_name}'s JaaduBot Vol.{pack}"
-                    packshortname = f"Vol._{pack}_with_{userid}"
+                    packshortname = f"Pack_{pack}_with_{userid}"
                     if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
                         if is_a_s:
