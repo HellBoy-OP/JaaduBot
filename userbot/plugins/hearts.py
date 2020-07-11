@@ -14,10 +14,6 @@ from re import sub
 from random import randint
 import random
 
-# ================= CONSTANT =================
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else uname().node
-# ============================================
-
 
 @bot.on(events.NewMessage(pattern=r"\.(.*)", outgoing=True))
 
