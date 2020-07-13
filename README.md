@@ -1,5 +1,11 @@
 # JaaduBot
 This is a userbot made for telegram. I made this userbot with help of all other userbots available in telegram.
+ 
+The owner would not be responsible for any kind of bans due to the bot.
+
+Use this link to get string session-:
+
+http://generatestringsession.rangerop.repl.run
 
 For any query
 # https://t.me/ranger_op
