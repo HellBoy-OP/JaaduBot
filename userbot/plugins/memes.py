@@ -758,7 +758,7 @@ async def slap(replied_user, event):
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = "..." + temp.format(victim=slapped, item=item, hits=hit, throws=throw)
+    caption = "{DEFAULTUSER}" + temp.format(victim=slapped, item=item, hits=hit, throws=throw)
 
     return caption
 
