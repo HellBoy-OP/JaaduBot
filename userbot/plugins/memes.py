@@ -598,17 +598,17 @@ CRI = [
 ]
 
 SLAP_TEMPLATES = [
-    "{hits} {victim} with a {item}.",
-    "{hits} {victim} in the face with a {item}.",
-    "{hits} {victim} around a bit with a {item}.",
-    "{throws} a {item} at {victim}.",
-    "grabs a {item} and {throws} it at {victim}'s face.",
-    "launches a {item} in {victim}'s general direction.",
-    "starts slapping {victim} silly with a {item}.",
-    "pins {victim} down and repeatedly {hits} them with a {item}.",
-    "grabs up a {item} and {hits} {victim} with it.",
-    "ties {victim} to a chair and {throws} a {item} at them.",
-    "gave a friendly push to help {victim} learn to swim in lava."
+    "{DEFAULTUSER} {hits} {victim} with a {item}.",
+    "{DEFAULTUSER} {hits} {victim} in the face with a {item}.",
+    "{DEFAULTUSER} {hits} {victim} around a bit with a {item}.",
+    "{DEFAULTUSER} {throws} a {item} at {victim}.",
+    "{DEFAULTUSER} grabs a {item} and {throws} it at {victim}'s face.",
+    "{DEFAULTUSER} launches a {item} in {victim}'s general direction.",
+    "{DEFAULTUSER} starts slapping {victim} silly with a {item}.",
+    "{DEFAULTUSER} pins {victim} down and repeatedly {hits} them with a {item}.",
+    "{DEFAULTUSER} grabs up a {item} and {hits} {victim} with it.",
+    "{DEFAULTUSER} ties {victim} to a chair and {throws} a {item} at them.",
+    "{DEFAULTUSER} gave a friendly push to help {victim} learn to swim in lava."
 ]
 
 ITEMS = [
