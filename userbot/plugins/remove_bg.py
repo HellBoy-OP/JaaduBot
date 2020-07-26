@@ -39,7 +39,7 @@ async def _(event):
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
         # check if media message
-        await event.edit("Ooh Analysing dis pic...")
+        await event.edit("Ooh Analysing this pic...")
         try:
             downloaded_file_name = await borg.download_media(
                 reply_message,
@@ -61,7 +61,7 @@ async def _(event):
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
-            remove_bg_image.name = "BG_less.png"
+            remove_bg_image.name = "ranger.png"
             await borg.send_file(
                 event.chat_id,
                 remove_bg_image,
@@ -74,7 +74,7 @@ async def _(event):
         ms = (end - start).seconds
         await event.edit("Removed dat annoying Backgroup in {} seconds".format(ms))
     else:
-        await event.edit("ReMove.BG API returned Errors. Please report to @catuserbot_support\n`{}".format(output_file_name.content.decode("UTF-8")))
+        await event.edit("ReMove.BG API returned Errors. Please report to @jaadu_bot_support\n`{}".format(output_file_name.content.decode("UTF-8")))
 
 
 # this method will call the API, and return in the appropriate format
