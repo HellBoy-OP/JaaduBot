@@ -23,19 +23,19 @@ async def _(event):
     reply = await event.get_reply_message()
     if event.pattern_match.group(1):
         query = event.pattern_match.group(1)
-        await event.edit("WeW..! I am finding your song....")
+        await event.edit("wi8..! I am finding your song....")
     elif reply.message:
         query = reply.message
-        await event.edit("WeW..! I am finding your song....")
+        await event.edit("wi8..! I am finding your song....")
     else:
     	await event.edit("`What I am Supposed to find `")
     	return
     await catmusic(str(query),"128k")
     l = glob.glob("*.mp3")
     if l:
-        await event.edit("Oh Yeah..! i found something wait Pls..🥰")
+        await event.edit("yeah..! i found something wi8..🥰")
     else:
-        await event.edit(f"Sorry..! i can't find anything😭 with `{query}`")
+        await event.edit(f"Sorry..! i can't find anything with `{query}`")
     loa = l[0]    
     await borg.send_file(
                 event.chat_id,
