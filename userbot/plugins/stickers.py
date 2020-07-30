@@ -51,7 +51,7 @@ async def _(event):
     pack = 1
     userid = event.from_id
     packname = f"@{user.username}'s JaaduBot Pack #{pack}"
-    packshortname = f"@{user.username}'s_Pack_#{pack}"
+    packshortname = f"Jaadu_Ki_Gufa"
     await event.edit("`Wo dekh Kya Mast Maal Aari Hai!`**🤤🤤**\n`Me is sticker ko chura rha hu`**😙😙**")
 
     is_a_s = is_it_animated_sticker(reply_message)
@@ -65,7 +65,7 @@ async def _(event):
         #if userid == 817088672:
         #    packshortname = "JaaduBot_Owner_Animated"
         #else:
-        packshortname = f"@{user.username}'s_JaaduBot_animated_pack #{pack}" # format: Uni_Borg_username
+        packshortname = f"Jaadu_Ki_Gufa_animated_pack" # format: Uni_Borg_username
     elif not is_message_image(reply_message):
         await event.edit("Invalid message type")
         return
@@ -114,7 +114,7 @@ async def _(event):
                 await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                 return
             elif response.text == "Sorry, this short name is unacceptable.":
-                packshortname = f"@{user.username}'s_Fav_Pack_#{pack}"
+                packshortname = f"Jaadu_Ki_Gufa"
                 await silently_send_message(bot_conv, packshortname)
         else:
             await silently_send_message(bot_conv, "/cancel")
@@ -131,7 +131,7 @@ async def _(event):
                     pack += 1
                     prevv = int(pack) - 1
                     packname = f"@{user.username}'s JaaduBot pack #{pack}"
-                    packshortname = f"@{user.username}'s_Fav_Pack_#{pack}"
+                    packshortname = f"Jaadu_Ki_Gufa"
                     if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
                         if is_a_s:
@@ -166,7 +166,7 @@ async def _(event):
                             await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                             return
                         elif response.text == "Sorry, this short name is unacceptable.":
-                            packshortname = f"@{user.username}'s_Fav_Anime_Pack #{pack}"
+                            packshortname = f"Jaadu_Ki_Gufa_Anime #{pack}"
                             await silently_send_message(bot_conv, packshortname)
                     else:
                         await event.edit("Pack No. " + str(prevv) + " full! Switching to Vol. " + str(pack))
