@@ -14,7 +14,7 @@ async def _(event):
        return
     reply_message = await event.get_reply_message() 
     if not reply_message.text:
-       await event.edit("```reply to text message```")
+       await event.edit("```Reply to text message```")
        return
     chat = "@SangMataInfo_bot"
     sender = reply_message.sender
@@ -22,19 +22,19 @@ async def _(event):
        await event.edit("```Reply to actual users message.```")
        return
     await event.edit("```Processing```")
-    async with borg.conversation(chat) as conv:
+async with bot.conversation(chat) as conv:
           try:     
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=461843263))
-             # await borg.forward_messages(chat, reply_message)
-              await silently_send_message(chat,"/generate")
+              response = conv.wait_event(events.NewMessage(incoming=True,from_users=1031952739))
+              await bot.forward_messages(chat, reply_message)
               response = await response 
           except YouBlockedUserError: 
-              await event.reply("```Please unblock @sangmatainfo_bot and try again```")
+              await event.reply("```Please unblock @QuotLyBot and try again```")
               return
-          if response.text.startswith("Forward"):
-             await event.edit("```can you kindly disable your forward privacy settings for good?```")
+          if response.text.startswith("Hi!"):
+             await event.edit("```Can you kindly disable your forward privacy settings for good?```")
           else: 
-             await event.edit(f"{response.message.message}")
+             await event.delete()   
+             await bot.forward_messages(event.chat_id, response.message)}")
 
 
 
