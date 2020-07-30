@@ -50,8 +50,8 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    packname = f"{user.first_name}'s JaaduBot Vol.{pack}"
-    packshortname = f"fav_{pack}_with_{userid}"
+    packname = f"@{user.username}'s JaaduBot Pack #{pack}"
+    packshortname = f"@{user.username}'s Pack #{pack}"
     await event.edit("`Wo dekh Kya Mast Maal Aari Hai!`**🤤🤤**\n`Me is sticker ko chura rha hu`**😙😙**")
 
     is_a_s = is_it_animated_sticker(reply_message)
@@ -61,11 +61,11 @@ async def _(event):
     if is_a_s:
         file_ext_ns_ion = "AnimatedSticker.tgs"
         uploaded_sticker = await borg.upload_file(file, file_name=file_ext_ns_ion)
-        packname = f"{user.first_name}'s Animated {pack}"
-        #if userid == 719877937:
-        #    packshortname = "JaaduBot_Animated"
+        packname = f"@{user.username}'s Animated pack #{pack}"
+        #if userid == 817088672:
+        #    packshortname = "JaaduBot_Owner_Animated"
         #else:
-        packshortname = f"JaaduBot's_animated_{pack}" # format: Uni_Borg_userid
+        packshortname = f"@{user.username}'s JaaduBot animated pack #{pack}" # format: Uni_Borg_username
     elif not is_message_image(reply_message):
         await event.edit("Invalid message type")
         return
@@ -80,7 +80,7 @@ async def _(event):
         now = datetime.datetime.now()
         dt = now + datetime.timedelta(minutes=1)
         if not await stickerset_exists(bot_conv, packshortname):
-            await event.edit("`Brewing a new pack! ãƒ½(Â´â–½ï½€)ãƒŽ`")
+            await event.edit("`Brewing a new pack! 🤟🤟🤟")
             await silently_send_message(bot_conv, "/cancel")
             if is_a_s:
                 response = await silently_send_message(bot_conv, "/newanimated")
@@ -92,7 +92,7 @@ async def _(event):
             response = await silently_send_message(bot_conv, packname)
             if not response.text.startswith("Alright!"):
                 if "unacceptable" in response.text:
-                    packname = f"{user.id}'s JaaduBot Vol.{pack}"
+                    packname = f"@{user.username}'s JaaduBot pack #{pack}"
                     response = await silently_send_message(bot_conv, packname)
                 else:
                     await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
@@ -114,7 +114,7 @@ async def _(event):
                 await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                 return
             elif response.text == "Sorry, this short name is unacceptable.":
-                packshortname = f"fav_{pack}_animated_{user.id}"
+                packshortname = f"@{user.username}'s Fav Pack #{pack}"
                 await silently_send_message(bot_conv, packshortname)
         else:
             await silently_send_message(bot_conv, "/cancel")
@@ -130,7 +130,7 @@ async def _(event):
                 while response.text == FILLED_UP_DADDY:
                     pack += 1
                     prevv = int(pack) - 1
-                    packname = f"{user.first_name}'s JaaduBot Vol.{pack}"
+                    packname = f"@{user.username}'s JaaduBot pack #{pack}"
                     packshortname = f"Pack_{pack}_with_{userid}"
                     if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
@@ -144,7 +144,7 @@ async def _(event):
                         response = await silently_send_message(bot_conv, packname)
                         if not response.text.startswith("Alright!"):
                             if "unacceptable" in response.text:
-                                packname = f"{user.id}'s JaaduBot Vol.{pack}"
+                                packname = f"@{user.username}'s JaaduBot pack {pack}"
                                 response = await silently_send_message(bot_conv, packname)
                             else:
                                 await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
@@ -166,7 +166,7 @@ async def _(event):
                             await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
                             return
                         elif response.text == "Sorry, this short name is unacceptable.":
-                            packshortname = f"pack_{pack}_animated_{user.id}"
+                            packshortname = f"@{user.username}'s Fav Anime Pack #{pack}"
                             await silently_send_message(bot_conv, packshortname)
                     else:
                         await event.edit("Pack No. " + str(prevv) + " full! Switching to Vol. " + str(pack))
@@ -251,7 +251,7 @@ async def _(event):
             return
         is_a_s = is_it_animated_sticker(reply_message)
         file_ext_ns_ion = "webp"
-        file_caption = "https://t.me/RoseSupport/33801"
+        file_caption = "https://t.me/rangerofficials"
         if is_a_s:
             file_ext_ns_ion = "tgs"
             file_caption = "Forward the ZIP file to @AnimatedStickersRoBot to get lottIE JSON containing the vector information."
