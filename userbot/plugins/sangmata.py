@@ -28,7 +28,7 @@ async with bot.conversation(chat) as conv:
               await bot.forward_messages(chat, reply_message)
               response = await response 
           except YouBlockedUserError: 
-              await event.reply("```Please unblock @QuotLyBot and try again```")
+              await event.reply("```Please unblock @SangmataInfo_bot and try again```")
               return
           if response.text.startswith("Hi!"):
              await event.edit("```Can you kindly disable your forward privacy settings for good?```")
