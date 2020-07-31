@@ -11,6 +11,10 @@ from pathlib import Path
 import asyncio
 import telethon.utils
 
+from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
+from userbot import LOGS, bot
+from userbot.modules import ALL_MODULES
+
 async def add_bot(bot_token):
     await bot.start(bot_token)
     bot.me = await bot.get_me() 
