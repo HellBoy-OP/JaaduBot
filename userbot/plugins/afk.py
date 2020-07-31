@@ -120,7 +120,7 @@ async def on_afk(event):
                 afk_since = f"`{int(minutes)}m{int(seconds)}s` **ago**"
             else:
                 afk_since = f"`{int(seconds)}s` **ago**"
-        message_to_reply = f"My Master has Been Gone For {afk_since}\n 🔥🔥 \n Agar Baat Karni Hai To apni GF ki nudes de DM Me. " + \
+        message_to_reply = f"My Master has Been Gone For {afk_since}\n 🔥🔥 \n Shaant Betho Thoda Rest Karo Reply Mil Jaega😇. " + \
             f"\n\n\n__ I'll back in a few hours__\n**REASON**: {reason}" \
             if reason \
             else f"**Important Notice**\n\n[This User Is Ded Forever...](https://telegra.ph//file/a53fa950ff31781d5930a.jpg) "
