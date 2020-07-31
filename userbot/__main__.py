@@ -12,11 +12,14 @@ from pathlib import Path
 import asyncio
 import telethon.utils
 
+for module_name in ALL_MODULES:
+    imported_module = import_module("userbot.modules." + module_name)
+
+
 async def add_bot(bot_token):
     await bot.start(bot_token)
     bot.me = await bot.get_me() 
     bot.uid = telethon.utils.get_peer_id(bot.me)
-
 
 
 if len(argv) not in (1, 3, 4):
