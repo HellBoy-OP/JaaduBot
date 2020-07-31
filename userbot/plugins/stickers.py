@@ -366,26 +366,26 @@ def resize_image(image, save_locaton):
     """ Copyright Rhyse Simpson:
         https://github.com/skittles9823/SkittBot/blob/master/tg_bot/modules/stickers.py
     """
-    im = Image.open(image)
-    maxsize = (512,512)
-    if (im.width and im.height) < 512:
-        size1 = im.width
-        size2 = im.height
-        if im.width > im.height:
-            scale = 512 / size1
-            size1new = 512
-            size2new = size2 * scale
-        else:
-            scale = 512 / size2
-            size1new = size1 * scale
-            size2new = 512
-        size1new = math.floor(size1new)
-        size2new = math.floor(size2new)
-        sizenew = (size1new, size2new)
-        im = im.resize(sizenew)
+    im = Image.open(kangsticker)
+            maxsize = (512, 512)
+            if (im.width and im.height) < 512:
+                size1 = im.width
+                size2 = im.height
+                if im.width > im.height:
+                    scale = 512/size1
+                    size1new = 512
+                    size2new = size2 * scale
+                else:
+                    scale = 512/size2
+                    size1new = size1 * scale
+                    size2new = 512
+                size1new = math.floor(size1new)
+                size2new = math.floor(size2new)
+                sizenew = (size1new, size2new)
+                im = im.resize(sizenew)
     else:
-        im.thumbnail(maxsize)
-    im.save(save_locaton, "PNG")
+            im.thumbnail(maxsize)
+            im.save(kangsticker, "PNG")
 
 
 def progress(current, total):
