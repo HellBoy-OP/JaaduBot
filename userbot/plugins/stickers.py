@@ -95,7 +95,7 @@ async def kang(args):
                 # pack
                 emoji = splat[1]
 
-        packname = f"{user.username}_{pack}"
+        packname = f"{user.username} #{pack}"
         packnick = f"@{user.username}'s_Jaadu_{pack}"
         cmd = '/newpack'
         file = io.BytesIO()
@@ -123,8 +123,8 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"{user.username}_{pack}"
-                    packnick = f"@{user.username}'s_{pack}"
+                    packname = f"{user.username} #{pack}"
+                    packnick = f"@{user.username}'s_Jaadu_{pack}"
                     await args.edit("`Switching to Pack " + str(pack) +
                                     " due to insufficient space`")
                     await conv.send_message(packname)
@@ -134,7 +134,7 @@ async def kang(args):
                         await conv.get_response()
                         # Ensure user doesn't get spamming notifications
                         await bot.send_read_acknowledge(conv.chat_id)
-                        await conv.send_message(Jaadu)
+                        await conv.send_message(packnick)
                         await conv.get_response()
                         # Ensure user doesn't get spamming notifications
                         await bot.send_read_acknowledge(conv.chat_id)
@@ -152,7 +152,7 @@ async def kang(args):
                         await conv.send_message("/publish")
                         if is_anim:
                             await conv.get_response()
-                            await conv.send_message(f"<{Jaadu}>")
+                            await conv.send_message(f"<{packnick}>")
                         # Ensure user doesn't get spamming notifications
                         await conv.get_response()
                         await bot.send_read_acknowledge(conv.chat_id)
