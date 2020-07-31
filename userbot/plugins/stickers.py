@@ -40,7 +40,7 @@ async def _(event):
         await event.edit("Reply to a photo to add to my personal sticker pack.**( 😈)**")
         return
     reply_message = await event.get_reply_message()
-    sticker_emoji = "🔥"
+    sticker_emoji = "🧞"
     input_str = event.pattern_match.group(1)
     if input_str:
         sticker_emoji = input_str
@@ -50,7 +50,7 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    packname = f"@{user.username}'s JaaduBot Pack #{pack}"
+    packname = f"@{user.username}'s Pack #{pack}"
     packshortname = f"Jaadu_Ki_Gufa"
     await event.edit("`Wo dekh Kya Mast Maal Aari Hai!`**🤤🤤**\n`Me is sticker ko chura rha hu`**😙😙**")
 
@@ -92,7 +92,7 @@ async def _(event):
             response = await silently_send_message(bot_conv, packname)
             if not response.text.startswith("Alright!"):
                 if "unacceptable" in response.text:
-                    packname = f"@{user.username}'s JaaduBot pack #{pack}"
+                    packname = f"@{user.username}'s pack #{pack}"
                     response = await silently_send_message(bot_conv, packname)
                 else:
                     await event.edit(f"**FAILED**! @Stickers replied: {response.text}")
@@ -130,7 +130,7 @@ async def _(event):
                 while response.text == FILLED_UP_DADDY:
                     pack += 1
                     prevv = int(pack) - 1
-                    packname = f"@{user.username}'s JaaduBot pack #{pack}"
+                    packname = f"@{user.username}'s pack #{pack}"
                     packshortname = f"Jaadu_Ki_Gufa"
                     if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
