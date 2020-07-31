@@ -367,7 +367,7 @@ def resize_image(image, save_locaton):
         https://github.com/skittles9823/SkittBot/blob/master/tg_bot/modules/stickers.py
     """
     im = Image.open(image)
-    maxsize = (512, 512)
+    maxsize = (512,512)
     if (im.width and im.height) < 512:
         size1 = im.width
         size2 = im.height
