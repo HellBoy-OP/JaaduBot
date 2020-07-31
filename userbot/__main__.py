@@ -5,16 +5,17 @@ from telethon.errors.rpcerrorlist import PhoneNumberInvalidError
 import os
 from telethon import TelegramClient
 from var import Var
+from userbot.utils import load_module
 from userbot import LOAD_PLUG, BOTLOG_CHATID, LOGS
 from pathlib import Path
 import asyncio
 import telethon.utils
 
-
 async def add_bot(bot_token):
     await bot.start(bot_token)
     bot.me = await bot.get_me() 
     bot.uid = telethon.utils.get_peer_id(bot.me)
+
 
 
 if len(argv) not in (1, 3, 4):
@@ -48,11 +49,9 @@ for name in files:
 
 import userbot._core
 
-print("Apka Bot Ab Zinda Hai. Jaao Aur Sabki Gaand Maaro .")
+print("Apka Bot Zinda hai. Jao Sabki Gaand Maro.")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
 else:
     bot.run_until_disconnected()
-
-
