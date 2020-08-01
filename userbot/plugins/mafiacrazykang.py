@@ -77,10 +77,7 @@ async def _(event):
     async with borg.conversation("@Stickers") as bot_conv:
         now = datetime.datetime.now()
         dt = now + datetime.timedelta(minutes=1)
-        if not await stickerset_exists(bot_conv, packshortname):
-            await event.edit("`Brewing a new pack! ヽ(´▽｀)ノ`")
-            await silently_send_message(bot_conv, "/cancel")
-            if is_a_s:
+        if is_a_s:
                 response = await silently_send_message(bot_conv, "/newanimated")
             else:
                 response = await silently_send_message(bot_conv, "/newpack")
