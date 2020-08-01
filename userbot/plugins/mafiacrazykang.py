@@ -50,7 +50,7 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    packname = f"@{userid} Locker{pack}"
+    packname = f"{userid} Locker{pack}"
     packshortname = f"JaaduBot_{userid}_Locker"
     await event.edit("`Look dat way,it's a gurl!\nMeanwhile, lemme kang this stcker over hehe ヽ༼ ಠ益ಠ ༽ﾉ`")
 
@@ -61,7 +61,7 @@ async def _(event):
     if is_a_s:
         file_ext_ns_ion = "AnimatedSticker.tgs"
         uploaded_sticker = await borg.upload_file(file, file_name=file_ext_ns_ion)
-        packname = f"@{userid} Locker Anime{pack}"
+        packname = f"{userid} Locker Anime{pack}"
         packshortname = f"JaaduBot_{userid}_anime" # format: Uni_Borg_userid
     elif not is_message_image(reply_message):
         await event.edit("Invalid message type")
@@ -122,15 +122,9 @@ async def _(event):
                 while response.text == FILLED_UP_DADDY:
                     pack += 1
                     prevv = int(pack) - 1
-                    packname = f"{user.first_name}'s GujjuBot Vol.{pack}"
-                    packshortname = f"Vol_{pack}_with_{user.first_name}"
-                    #if userid == 948408212:
-                       # packname = f"{user.first_name}'s GujjuBot Vol.{pack}"
-                       # packshortname = "Vol._{pack}_Jayu_ke_locker_me"
-                   # else:
-                       # packname = f"Vol._{pack}_GujjuBot{userid}"
-                        #packshortname = f"Vol._{pack}_GujjuBot_{userid}_ns"
-                    if not await stickerset_exists(bot_conv, packshortname):
+                    packname = f"{userid} Locker{pack}"
+                    packshortname = f"JaaduBot_{userid}_Locker"
+                   if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
                         if is_a_s:
                             response = await silently_send_message(bot_conv, "/newanimated")
