@@ -94,9 +94,6 @@ async def kang(args):
                 # User sent just custom emote, wants to push to default
                 # pack
                 emoji = splat[1]
-if userid == 1115312616
-packname = f"{user.username_Jaadu_locker{pack}"
-      else:
         packname = f"{user.username}_Jaadu_{pack}"
         packnick = f"@{user.username}'s Locker{pack}"
        cmd = '/newpack'
@@ -125,9 +122,6 @@ packname = f"{user.username_Jaadu_locker{pack}"
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-        if userid == 1115312616
-packname = f"{user.username_Jaadu_locker{pack}"
-      else:
 packname = f"{user.username}_Jaadu_{pack}"
                     packnick = f"@{user.username}'s Locker{pack}"
                     await args.edit("`Switching to Pack " + str(pack) +
