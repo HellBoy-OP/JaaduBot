@@ -41,9 +41,9 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^\.kang")
+@register(outgoing=True, pattern="^\.keng")
 async def kang(args):
-    """ For .kang command, kangs stickers or creates new ones. """
+    """ For .keng command, kangs stickers or creates new ones. """
     kang_meme = random.choice(KANGING_STR)
     user = await bot.get_me()
     if not user.username:
@@ -320,13 +320,13 @@ async def get_pack_info(event):
 
 CMD_HELP.update({
     "stickers":
-    ".kang\
+    ".keng\
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n.kang [emoji('s)]\
+\n\n.keng [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n.kang [number]\
+\n\n.keng [number]\
 \nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n.kang [emoji('s)] [number]\
+\n\n.keng [emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
 \n\n.stkrinfo\
 \nUsage: Gets info about the sticker pack."
