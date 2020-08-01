@@ -50,10 +50,10 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    #packname = f"@{user.username} Locker 1"
+    #packname = f"@{userid} Locker{pack}"
     #packshortname = f"JaaduBot_{userid}_ns"  # format: Uni_Borg_userid
  
-        packname = f"@{user.username} Locker 1"
+        packname = f"@{userid} Locker{pack}"
         packshortname = f"JaaduBot_{userid}_Locker"
     await event.edit("`Look dat way,it's a gurl!\nMeanwhile, lemme kang this stcker over hehe ヽ༼ ಠ益ಠ ༽ﾉ`")
 
@@ -64,7 +64,7 @@ async def _(event):
     if is_a_s:
         file_ext_ns_ion = "AnimatedSticker.tgs"
         uploaded_sticker = await borg.upload_file(file, file_name=file_ext_ns_ion)
-        packname = f"@{user.username} Locker 1 Anime"
+        packname = f"@{userid} Locker Anime{pack}"
         packshortname = f"JaaduBot_{userid}_anime" # format: Uni_Borg_userid
     elif not is_message_image(reply_message):
         await event.edit("Invalid message type")
