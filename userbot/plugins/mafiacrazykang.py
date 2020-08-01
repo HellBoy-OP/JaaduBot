@@ -50,11 +50,8 @@ async def _(event):
         user.first_name = user.id
     pack = 1
     userid = event.from_id
-    #packname = f"@{userid} Locker{pack}"
-    #packshortname = f"JaaduBot_{userid}_ns"  # format: Uni_Borg_userid
- 
-        packname = f"@{userid} Locker{pack}"
-        packshortname = f"JaaduBot_{userid}_Locker"
+    packname = f"@{userid} Locker{pack}"
+    packshortname = f"JaaduBot_{userid}_Locker"
     await event.edit("`Look dat way,it's a gurl!\nMeanwhile, lemme kang this stcker over hehe ヽ༼ ಠ益ಠ ༽ﾉ`")
 
     is_a_s = is_it_animated_sticker(reply_message)
