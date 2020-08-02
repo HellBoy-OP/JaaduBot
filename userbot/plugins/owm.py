@@ -14,7 +14,7 @@ from userbot import OPEN_WEATHER_MAP_APPID as OWM_API, CMD_HELP
 from userbot.events import register, errors_handler
 
 # ===== CONSTANT =====
-DEFCITY = 'Delhi'
+DEFCITY = 'India'
 
 
 # ====================
@@ -44,7 +44,7 @@ async def get_weather(weather):
     APPID = OWM_API
 
     if not weather.pattern_match.group(1):
-        CITY = DEFCITY
+        CITY = Delhi
         if not CITY:
             await weather.edit("`Please specify a city or set one as default.`"
                                )
