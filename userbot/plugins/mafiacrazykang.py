@@ -41,9 +41,9 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^\.kang")
+@register(outgoing=True, pattern="^\.keng")
 async def kang(args):
-    """ For .kang command, kangs stickers or creates new ones. """
+    """ For .keng command, kangs stickers or creates new ones. """
     kang_meme = random.choice(KANGING_STR)
     user = await bot.get_me()
     if not user.username:
