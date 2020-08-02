@@ -41,13 +41,13 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^\.keng")
+@register(outgoing=True, pattern="^\.kang")
 async def kang(args):
-    """ For .keng command, kangs stickers or creates new ones. """
+    """ For .kang command, kangs stickers or creates new ones. """
     kang_meme = random.choice(KANGING_STR)
     user = await bot.get_me()
-    if not user.first_name:
-    user.first_name = user.id
+    if not user.username:
+        user.username = user.first_name
     message = await args.get_reply_message()
     photo = None
     emojibypass = False
@@ -104,9 +104,9 @@ async def kang(args):
                 # User sent just custom emote, wants to push to default
                 # pack
                 emoji = splat[1]
-        
-        packname = f"ranger_op_Jaadu_{user.id}_{pack}"
-        packnick = f"{user.id}'s Locker{pack}"
+
+        packname = f"{user.id}_by_Jaadu_{pack}"
+        packnick = f"@{user.username}'s kang pack Vol.{pack}"
         cmd = '/newpack'
         file = io.BytesIO()
 
@@ -133,8 +133,8 @@ async def kang(args):
                 x = await conv.get_response()
                 while x.text == PACK_FULL:
                     pack += 1
-                    packname = f"ranger_op_Jaadu_{user.id}_{pack}"
-                    packnick = f"{user.id}'s Locker{pack}"
+                    packname = f"a{user.id}_by_Jaadu_{pack}"
+                    packnick = f"@{user.username}'s kang pack Vol.{pack}"
                     await args.edit(f"`{kang_meme}\
                     \nMoving on to Vol.{str(pack)}..`")
                     await conv.send_message(packname)
@@ -320,13 +320,13 @@ async def get_pack_info(event):
 
 CMD_HELP.update({
     "stickers":
-    ".keng\
+    ".kang\
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n.keng [emoji('s)]\
+\n\n.kang [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n.keng [number]\
+\n\n.kang [number]\
 \nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n.keng [emoji('s)] [number]\
+\n\n.kang [emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
 \n\n.stkrinfo\
 \nUsage: Gets info about the sticker pack."
