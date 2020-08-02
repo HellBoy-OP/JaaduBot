@@ -104,10 +104,6 @@ async def kang(args):
                 # User sent just custom emote, wants to push to default
                 # pack
                 emoji = splat[1]
-
-user = await bot.get_me()
-    if not user.first_name:
-        user.first_name = user.id
         
 packname = f"ranger_op_Jaadu_{user.id}_{pack}"
         packnick = f"@{user.username}'s Locker{pack}"
