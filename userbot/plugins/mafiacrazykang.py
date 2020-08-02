@@ -47,7 +47,10 @@ async def kang(args):
     kang_meme = random.choice(KANGING_STR)
     user = await bot.get_me()
     if not user.username:
-        user.username = user.first_name
+    user = await bot.get_me()
+    user.username = user.first_name
+    if not user.first_name:
+    user.first_name = user.id
     message = await args.get_reply_message()
     photo = None
     emojibypass = False
