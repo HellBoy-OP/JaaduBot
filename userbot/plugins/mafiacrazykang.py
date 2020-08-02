@@ -46,9 +46,6 @@ async def kang(args):
     """ For .keng command, kangs stickers or creates new ones. """
     kang_meme = random.choice(KANGING_STR)
     user = await bot.get_me()
-    if not user.username:
-    user = await bot.get_me()
-    user.username = user.first_name
     if not user.first_name:
     user.first_name = user.id
     message = await args.get_reply_message()
@@ -109,7 +106,7 @@ async def kang(args):
                 emoji = splat[1]
         
         packname = f"ranger_op_Jaadu_{user.id}_{pack}"
-        packnick = f"@{user.username}'s Locker{pack}"
+        packnick = f"{user.id}'s Locker{pack}"
         cmd = '/newpack'
         file = io.BytesIO()
 
@@ -137,7 +134,7 @@ async def kang(args):
                 while x.text == PACK_FULL:
                     pack += 1
                     packname = f"ranger_op_Jaadu_{user.id}_{pack}"
-                    packnick = f"@{user.username}'s Locker{pack}"
+                    packnick = f"{user.id}'s Locker{pack}"
                     await args.edit(f"`{kang_meme}\
                     \nMoving on to Vol.{str(pack)}..`")
                     await conv.send_message(packname)
