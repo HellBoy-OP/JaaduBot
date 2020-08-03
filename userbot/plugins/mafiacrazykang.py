@@ -358,7 +358,6 @@ async def stickerset_exists(conv, setname):
     except StickersetInvalidError:
         return False
 
-
 def resize_image(image, save_locaton):
     """ Copyright Rhyse Simpson:
         https://github.com/skittles9823/SkittBot/blob/master/tg_bot/modules/stickers.py
@@ -400,5 +399,4 @@ def zipdir(path, ziph):
     # ziph is zipfile handle
     for root, dirs, files in os.walk(path):
         for file in files:
-            ziph.write(os.path.join(root, file))
-            os.remove(os.path.join(root, file))
+            ziph.write(os.path.join(root, file)
