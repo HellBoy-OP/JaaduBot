@@ -95,7 +95,8 @@ if bool(ENV):
 
     # Youtube API key
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
-
+    #Slap Username
+    SLAP_USERNAME = os.environ.get("SLAP_USERNAME", None)
     # Default .alive name
     ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
     AUTONAME = os.environ.get("AUTONAME", None)
