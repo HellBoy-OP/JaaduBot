@@ -10,7 +10,6 @@ from uniborg.util import admin_cmd
 import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from userbot import ALIVE_NAME
 from userbot import SLAP_USERNAME
 
 SLAP_TEMPLATES = [
@@ -74,7 +73,7 @@ HIT = [
     "bashes",
 ]
 
-user1 = str(SLAP_USERNAME) if ALIVE_NAME else "JaaduBot"
+user1 = str(SLAP_USERNAME) if SLAP_USERNAME else "JaaduBot"
 
 @borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
 async def who(event):
