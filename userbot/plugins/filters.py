@@ -1,156 +1,143 @@
-# Copyright (C) 2019 The Raphielscape Company LLC.
-#
-# Licensed under the Raphielscape Public License, Version 1.c (the "License");
-# you may not use this file except in compliance with the License.
-#
-""" Userbot module for filter commands """
-
-from asyncio import sleep
-from re import fullmatch, IGNORECASE, escape
-from userbot import BOTLOG, BOTLOG_CHATID, CMD_HELP
-from userbot.events import register
-
-
-@register(incoming=True, disable_edited=True, disable_errors=True)
-async def filter_incoming_handler(handler):
-    """ Checks if the incoming message contains handler of a filter """
-    try:
-        if not (await handler.get_sender()).bot:
-            try:
-                from userbot.modules.sql_helper.filter_sql import get_filters
-            except AttributeError:
-                await handler.edit("`Running on Non-SQL mode!`")
-                return
-            name = handler.raw_text
-            filters = get_filters(handler.chat_id)
-            if not filters:
-                return
-            for trigger in filters:
-                pro = fullmatch(trigger.keyword, name, flags=IGNORECASE)
-                if pro and trigger.f_mesg_id:
-                    msg_o = await handler.client.get_messages(
-                        entity=BOTLOG_CHATID, ids=int(trigger.f_mesg_id))
-                    await handler.reply(msg_o.message, file=msg_o.media)
-                elif pro and trigger.reply:
-                    await handler.reply(trigger.reply)
-    except AttributeError:
-        pass
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+"""Filters
+Available Commands:
+.savefilter
+.listfilters
+.clearfilter"""
+import asyncio
+import re
+from telethon import events, utils
+from telethon.tl import types
+from userbot.plugins.sql_helper.filter_sql import get_filter, add_filter, remove_filter, get_all_filters, remove_all_filters
+from userbot import CMD_HELP
+from userbot.utils import admin_cmd
+DELETE_TIMEOUT = 0
+TYPE_TEXT = 0
+TYPE_PHOTO = 1
+TYPE_DOCUMENT = 2
 
 
-@register(outgoing=True, pattern="^\.filter (\w*)")
-async def add_new_filter(new_handler):
-    """ For .filter command, allows adding new filters in a chat """
-    try:
-        from userbot.modules.sql_helper.filter_sql import add_filter
-    except AttributeError:
-        await new_handler.edit("`Running on Non-SQL mode!`")
-        return
-    keyword = new_handler.pattern_match.group(1)
-    string = new_handler.text.partition(keyword)[2]
-    msg = await new_handler.get_reply_message()
-    msg_id = None
-    if msg and msg.media and not string:
-        if BOTLOG_CHATID:
-            await new_handler.client.send_message(
-                BOTLOG_CHATID, f"#FILTER\
-            \nCHAT ID: {new_handler.chat_id}\
-            \nTRIGGER: {keyword}\
-            \n\nThe following message is saved as the filter's reply data for the chat, please do NOT delete it !!"
-            )
-            msg_o = await new_handler.client.forward_messages(
-                entity=BOTLOG_CHATID,
-                messages=msg,
-                from_peer=new_handler.chat_id,
-                silent=True)
-            msg_id = msg_o.id
-        else:
-            await new_handler.edit(
-                "`Saving media as reply to the filter requires the BOTLOG_CHATID to be set.`"
-            )
-            return
-    elif new_handler.reply_to_msg_id and not string:
-        rep_msg = await new_handler.get_reply_message()
-        string = rep_msg.text
-    success = "`Filter` **{}** `{} successfully`"
-    if add_filter(str(new_handler.chat_id), keyword, string, msg_id) is True:
-        await new_handler.edit(success.format(keyword, 'added'))
+global last_triggered_filters
+last_triggered_filters = {}  # pylint:disable=E0602
+
+
+@command(incoming=True)
+async def on_snip(event):
+    global last_triggered_filters
+    name = event.raw_text
+    if event.chat_id in last_triggered_filters:
+        if name in last_triggered_filters[event.chat_id]:
+            # avoid userbot spam
+            # "I demand rights for us bots, we are equal to you humans." -Henri Koivuneva (t.me/UserbotTesting/2698)
+            return False
+    snips = get_all_filters(event.chat_id)
+    if snips:
+        for snip in snips:
+            pattern = r"( |^|[^\w])" + re.escape(snip.keyword) + r"( |$|[^\w])"
+            if re.search(pattern, name, flags=re.IGNORECASE):
+                if snip.snip_type == TYPE_PHOTO:
+                    media = types.InputPhoto(
+                        int(snip.media_id),
+                        int(snip.media_access_hash),
+                        snip.media_file_reference
+                    )
+                elif snip.snip_type == TYPE_DOCUMENT:
+                    media = types.InputDocument(
+                        int(snip.media_id),
+                        int(snip.media_access_hash),
+                        snip.media_file_reference
+                    )
+                else:
+                    media = None
+                message_id = event.message.id
+                if event.reply_to_msg_id:
+                    message_id = event.reply_to_msg_id
+                await event.reply(
+                    snip.reply,
+                    file=media
+                )
+                if event.chat_id not in last_triggered_filters:
+                    last_triggered_filters[event.chat_id] = []
+                last_triggered_filters[event.chat_id].append(name)
+                await asyncio.sleep(DELETE_TIMEOUT)
+                last_triggered_filters[event.chat_id].remove(name)
+
+
+@borg.on(admin_cmd(pattern="savefilter (.*)"))
+async def on_snip_save(event):
+    name = event.pattern_match.group(1)
+    msg = await event.get_reply_message()
+    if msg:
+        snip = {'type': TYPE_TEXT, 'text': msg.message or ''}
+        if msg.media:
+            media = None
+            if isinstance(msg.media, types.MessageMediaPhoto):
+                media = utils.get_input_photo(msg.media.photo)
+                snip['type'] = TYPE_PHOTO
+            elif isinstance(msg.media, types.MessageMediaDocument):
+                media = utils.get_input_document(msg.media.document)
+                snip['type'] = TYPE_DOCUMENT
+            if media:
+                snip['id'] = media.id
+                snip['hash'] = media.access_hash
+                snip['fr'] = media.file_reference
+        add_filter(event.chat_id, name, snip['text'], snip['type'], snip.get('id'), snip.get('hash'), snip.get('fr'))
+        await event.edit(f"filter {name} saved successfully. Get it with {name}")
     else:
-        await new_handler.edit(success.format(keyword, 'updated'))
+        await event.edit("Reply to a message with `savefilter keyword` to save the filter")
 
 
-@register(outgoing=True, pattern="^\.stop (\w*)")
-async def remove_a_filter(r_handler):
-    """ For .stop command, allows you to remove a filter from a chat. """
-    try:
-        from userbot.modules.sql_helper.filter_sql import remove_filter
-    except AttributeError:
-        await r_handler.edit("`Running on Non-SQL mode!`")
-        return
-    filt = r_handler.pattern_match.group(1)
-    if not remove_filter(r_handler.chat_id, filt):
-        await r_handler.edit("`Filter` **{}** `doesn't exist.`".format(filt))
+@borg.on(admin_cmd(pattern="listfilters$"))
+async def on_snip_list(event):
+    all_snips = get_all_filters(event.chat_id)
+    OUT_STR = "Available Filters in the Current Chat:\n"
+    if len(all_snips) > 0:
+        for a_snip in all_snips:
+            OUT_STR += f"👉 {a_snip.keyword} \n"
     else:
-        await r_handler.edit(
-            "`Filter` **{}** `was deleted successfully`".format(filt))
+        OUT_STR = "No Filters. Start Saving using `.savefilter`"
+    if len(OUT_STR) > 4096:
+        with io.BytesIO(str.encode(OUT_STR)) as out_file:
+            out_file.name = "filters.text"
+            await bot.send_file(
+                event.chat_id,
+                out_file,
+                force_document=True,
+                allow_cache=False,
+                caption="Available Filters in the Current Chat",
+                reply_to=event
+            )
+            await event.delete()
+    else:
+        await event.edit(OUT_STR)
 
 
-@register(outgoing=True, pattern="^\.rmbotfilters (.*)")
-async def kick_marie_filter(event):
-    """ For .rmfilters command, allows you to kick all \
-        Marie(or her clones) filters from a chat. """
-    cmd = event.text[0]
-    bot_type = event.pattern_match.group(1).lower()
-    if bot_type not in ["marie", "rose"]:
-        await event.edit("`That bot is not yet supported!`")
-        return
-    await event.edit("```Will be kicking away all Filters!```")
-    await sleep(3)
-    resp = await event.get_reply_message()
-    filters = resp.text.split("-")[1:]
-    for i in filters:
-        if bot_type.lower() == "marie":
-            await event.reply("/stop %s" % (i.strip()))
-        if bot_type.lower() == "rose":
-            i = i.replace('`', '')
-            await event.reply("/stop %s" % (i.strip()))
-        await sleep(0.3)
-    await event.respond(
-        "```Successfully purged bots filters yaay!```\n Gimme cookies!")
-    if BOTLOG:
-        await event.client.send_message(
-            BOTLOG_CHATID, "I cleaned all filters at " + str(event.chat_id))
+@borg.on(admin_cmd(pattern="clearfilter (.*)"))
+async def on_snip_delete(event):
+    name = event.pattern_match.group(1)
+    remove_filter(event.chat_id, name)
+    await event.edit(f"filter {name} deleted successfully")
 
 
-@register(outgoing=True, pattern="^\.filters$")
-async def filters_active(event):
-    """ For .filters command, lists all of the active filters in a chat. """
-    try:
-        from userbot.modules.sql_helper.filter_sql import get_filters
-    except AttributeError:
-        await event.edit("`Running on Non-SQL mode!`")
-        return
-    transact = "`There are no filters in this chat.`"
-    filters = get_filters(event.chat_id)
-    for filt in filters:
-        if transact == "`There are no filters in this chat.`":
-            transact = "Active filters in this chat:\n"
-            transact += "`{}`\n".format(filt.keyword)
-        else:
-            transact += "`{}`\n".format(filt.keyword)
+@borg.on(admin_cmd(pattern="clearallfilters$"))
+async def on_all_snip_delete(event):
+    remove_all_filters(event.chat_id)
+    await event.edit(f"filters **in current chat** deleted successfully")
 
-    await event.edit(transact)
-
+    
 
 CMD_HELP.update({
-    "filter":
-    ".filters\
-    \nUsage: Lists all active userbot filters in a chat.\
-    \n\n.filter <keyword> <reply text> or reply to a message with .filter <keyword>\
+    "filters":
+    ".listfilters\
+    \nUsage: Lists all active (of your userbot) filters in a chat.\
+    \n\n.savefilter  reply to a message with .savefilter <keyword>\
     \nUsage: Saves the replied message as a reply to the 'keyword'.\
     \nThe bot will reply to the message whenever 'keyword' is mentioned.\
     \nWorks with everything from files to stickers.\
-    \n\n.stop <filter>\
-    \nUsage: Stops the specified filter.\
-    \n\n.rmbotfilters <marie/rose>\
-    \nUsage: Removes all filters of admin bots (Currently supported: Marie, Rose and their clones.) in the chat."
-})
+    \n\n.clearfilter <keyword>\
+    \nUsage: Stops the specified keyword.\
+    \n\n.clearallfilters \
+    \nUsage: Removes all filters of your userbot in the chat."
+})    
