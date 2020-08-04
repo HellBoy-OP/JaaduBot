@@ -129,14 +129,14 @@ async def slap(replied_user, event):
 
     # get user who sent message
     if msg.from_user.username:
-        curr_user = "@" + escape_markdown(msg.from_user.username)
+        curr_user = SLAP_USERNAME
     else:
-        curr_user = "[{}](tg://user?id={})".format(msg.from_user.first_name, msg.from_user.id)
+        curr_user = SLAP_USERNAME
 
     user_id = extract_user(update.effective_message, args)
     if user_id:
         slapped_user = bot.get_chat(user_id)
-        user1 = curr_user
+        user1 = SLAP_USERNAME
         if slapped_user.username:
             user2 = "@" + escape_markdown(slapped_user.username)
         else:
@@ -146,12 +146,12 @@ async def slap(replied_user, event):
     # if no target found, bot targets the sender
     else:
         user1 = "[{}](tg://user?id={})".format(bot.first_name, bot.id)
-        user2 = curr_user
+        user2 = SLAP_USERNAME
 
     temp = random.choice(SLAP_TEMPLATES)
     item = random.choice(ITEMS)
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
+    caption = temp.format(user1=SLAP_USERNAME, user2=user2, item=item, hits=hit, throws=throw)
     return caption
