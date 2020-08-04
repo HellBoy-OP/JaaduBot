@@ -13,17 +13,17 @@ from telethon.tl.types import MessageEntityMentionName
 from userbot import ALIVE_NAME
 
 SLAP_TEMPLATES = [
-    "{DEFAULTUSER} {hits} {user2} with a {item}.",
-    "{DEFAULTUSER} {hits} {user2} in the face with a {item}.",
-    "{DEFAULTUSER} {hits} {user2} around a bit with a {item}.",
-    "{DEFAULTUSER} {throws} a {item} at {user2}.",
-    "{DEFAULTUSER} grabs a {item} and {throws} it at {user2}'s face.",
-    "{DEFAULTUSER} launches a {item} in {user2}'s general direction.",
-    "{DEFAULTUSER} starts slapping {user2} silly with a {item}.",
-    "{DEFAULTUSER} pins {user2} down and repeatedly {hits} them with a {item}.",
-    "{DEFAULTUSER} grabs up a {item} and {hits} {user2} with it.",
-    "{DEFAULTUSER} ties {user2} to a chair and {throws} a {item} at them.",
-    "{DEFAULTUSER} gave a friendly push to help {user2} learn to swim in lava."
+    "{user1} {hits} {user2} with a {item}.",
+    "{user1} {hits} {user2} in the face with a {item}.",
+    "{user1} {hits} {user2} around a bit with a {item}.",
+    "{user1} {throws} a {item} at {user2}.",
+    "{user1} grabs a {item} and {throws} it at {user2}'s face.",
+    "{user1} launches a {item} in {user2}'s general direction.",
+    "{user1} starts slapping {user2} silly with a {item}.",
+    "{user1} pins {user2} down and repeatedly {hits} them with a {item}.",
+    "{user1} grabs up a {item} and {hits} {user2} with it.",
+    "{user1} ties {user2} to a chair and {throws} a {item} at them.",
+    "{user1} gave a friendly push to help {user2} learn to swim in lava."
 ]
 
 ITEMS = [
@@ -73,7 +73,7 @@ HIT = [
     "bashes",
 ]
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "JaaduBot"
+user1 = str(ALIVE_NAME) if ALIVE_NAME else "JaaduBot"
 
 @borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
 async def who(event):
@@ -124,19 +124,34 @@ async def get_user(event):
     return replied_user
 
 async def slap(replied_user, event):
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    username = replied_user.user.username
-    if username:
-        slapped = "@{}".format(username)
+    # reply to correct message
+    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
+
+    # get user who sent message
+    if msg.from_user.username:
+        curr_user = "@" + escape_markdown(msg.from_user.username)
     else:
-        slapped = f"[{first_name}](tg://user?id={user_id})"
+        curr_user = "[{}](tg://user?id={})".format(msg.from_user.first_name, msg.from_user.id)
+
+    user_id = extract_user(update.effective_message, args)
+    if user_id:
+        slapped_user = bot.get_chat(user_id)
+        user1 = curr_user
+        if slapped_user.username:
+            user2 = "@" + escape_markdown(slapped_user.username)
+        else:
+            user2 = "[{}](tg://user?id={})".format(slapped_user.first_name,
+                                                   slapped_user.id)
+
+    # if no target found, bot targets the sender
+    else:
+        user1 = "[{}](tg://user?id={})".format(bot.first_name, bot.id)
+        user2 = curr_user
 
     temp = random.choice(SLAP_TEMPLATES)
     item = random.choice(ITEMS)
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = temp.format(user1=DEFAULTUSER, user2=slapped, item=item, hits=hit, throws=throw)
-
+    caption = temp.format(user1=user1, user2=user2, item=item, hits=hit, throws=throw)
     return caption
