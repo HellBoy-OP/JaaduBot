@@ -162,10 +162,6 @@ def is_redis_alive():
     GDRIVE_FOLDER_ID = os.environ.get("GDRIVE_FOLDER_ID", None)
     TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY",
                                          "./downloads")
-else:
-    # Put your ppe vars here if you are using local hosting
-    PLACEHOLDER = None
-
 # Setting Up CloudMail.ru and MEGA.nz extractor binaries,
 # and giving them correct perms to work properly.
 if not os.path.exists('bin'):
