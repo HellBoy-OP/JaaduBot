@@ -74,9 +74,6 @@ if bool(ENV):
     # Console verbose logging
     CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 
-    # SQL Database URI
-    DB_URI = os.environ.get("DATABASE_URL", None)
-
     # OCR API key
     OCR_SPACE_API_KEY = os.environ.get("OCR_SPACE_API_KEY", None)
 
@@ -97,6 +94,8 @@ if bool(ENV):
 
     # Youtube API key
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
+    #Mongo db url
+    MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     #Slap Username
     SLAP_USERNAME = os.environ.get("SLAP_USERNAME", None)
     # Default .alive name
