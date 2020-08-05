@@ -21,12 +21,13 @@ from telethon import TelegramClient
 from var import Var
 from userbot.utils import load_module
 from userbot import LOAD_PLUG, BOTLOG_CHATID, LOGS
+from userbot.modules import ALL_MODULES
+for module_name in ALL_MODULES:
+imported_module = import_module("userbot.modules." + module_name)
 from pathlib import Path
 import asyncio
 import telethon.utils
 import heroku3
-
-
 async def add_bot():
     ((await bot.start()) if os.environ.get("PHONE") is None else (await bot.start(phone=os.environ.get("PHONE"))))
     bot.me = await bot.get_me() 
