@@ -10,7 +10,7 @@ from uniborg.util import admin_cmd
 import random
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
-from userbot import SLAP_USERNAME
+from userbot import ALIVE_NAME
 
 SLAP_TEMPLATES = [
     "{user1} {hits} {user2} with a {item}.",
@@ -73,7 +73,7 @@ HIT = [
     "bashes",
 ]
 
-user1 = str(SLAP_USERNAME) if SLAP_USERNAME else "JaaduBot"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "FridayUserbot"
 
 @borg.on(admin_cmd(pattern="slap ?(.*)", allow_sudo=True))
 async def who(event):
@@ -124,34 +124,19 @@ async def get_user(event):
     return replied_user
 
 async def slap(replied_user, event):
-    # reply to correct message
-    reply_text = msg.reply_to_message.reply_text if msg.reply_to_message else msg.reply_text
-
-    # get user who sent message
-    if msg.from_user.username:
-        curr_user = SLAP_USERNAME
+    user_id = replied_user.user.id
+    first_name = replied_user.user.first_name
+    username = replied_user.user.username
+    if username:
+        slapped = "@{}".format(username)
     else:
-        curr_user = SLAP_USERNAME
-
-    user_id = extract_user(update.effective_message, args)
-    if user_id:
-        slapped_user = bot.get_chat(user_id)
-        user1 = SLAP_USERNAME
-        if slapped_user.username:
-            user2 = "@" + escape_markdown(slapped_user.username)
-        else:
-            user2 = "[{}](tg://user?id={})".format(slapped_user.first_name,
-                                                   slapped_user.id)
-
-    # if no target found, bot targets the sender
-    else:
-        user1 = "[{}](tg://user?id={})".format(bot.first_name, bot.id)
-        user2 = SLAP_USERNAME
+        slapped = f"[{first_name}](tg://user?id={user_id})"
 
     temp = random.choice(SLAP_TEMPLATES)
     item = random.choice(ITEMS)
     hit = random.choice(HIT)
     throw = random.choice(THROW)
 
-    caption = temp.format(user1=SLAP_USERNAME, user2=user2, item=item, hits=hit, throws=throw)
+    caption = temp.format(user1=DEFAULTUSER, user2=slapped, item=item, hits=hit, throws=throw)
+
     return caption
