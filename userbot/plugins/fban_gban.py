@@ -7,7 +7,7 @@
 from userbot import bot, CMD_HELP, is_mongo_alive, is_redis_alive
 from userbot.events import register, errors_handler
 from telethon.tl.types import MessageEntityMentionName
-from userbot.modules.dbhelper import get_fban, add_chat_fban, remove_chat_fban, get_gban, add_chat_gban, remove_chat_gban
+from userbot.plugins.dbhelper import get_fban, add_chat_fban, remove_chat_fban, get_gban, add_chat_gban, remove_chat_gban
 import asyncio
 
 
