@@ -14,7 +14,7 @@ from userbot.utils import admin_cmd
 @borg.on(admin_cmd("leave$"))
 async def leave(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
-        await e.edit("`I iz Leaving dis Kensur Group kek!`")
+        await e.edit("`Papa Jaa Rahe Hai Chalo Namaste Karo`")
         time.sleep(3)
         if '-' in str(e.chat_id):
             await bot(LeaveChannelRequest(e.chat_id))
