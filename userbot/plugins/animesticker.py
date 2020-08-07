@@ -1,3 +1,7 @@
+#AnimeSticker by Ranger
+#JaaduBot OP
+
+
 from asyncio import sleep
 from random import choice, getrandbits, randint
 import re
@@ -33,7 +37,7 @@ EMOJI_PATTERN = re.compile(
     "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
     "\U0001FA00-\U0001FA6F"  # Chess Symbols
     "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
-    "\U00002702-\U000027B0"  # Dingbats 
+    "\U00002702-\U000027B0"  # Dingbats (jaadubot)
     "]+")
 
 
@@ -45,7 +49,7 @@ def deEmojify(inputString: str) -> str:
 @register(outgoing=True, pattern="^.argb(?: |$)(.*)")
 
 async def argb(animu):
-#"""Creates random anime sticker!"""
+#"""Creates random anime sticker(Plugin by Ranger)!"""
 
     text = animu.pattern_match.group(1)
     if not text:
