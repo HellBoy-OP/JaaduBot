@@ -52,14 +52,14 @@ async def _(event):
         user.username = user.id
     pack = 1
     userid = event.from_id
-    #packname = f"Jaadu PACK"
-    #packshortname = f"Jaadu_{userid}_ns"  # format: Uni_Borg_userid
-        packname = f"{user.username}'s {pack}"
-        packshortname = f"Jaadu_{userid}_Pack"
+    #packname = f"FRIDAY PACK"
+    #packshortname = f"FRIDAY_{userid}_ns"  # format: Uni_Borg_userid
+    packname = f"{user.username}'s {pack}"
+    packshortname = f"Jaadu_{userid}_Pack"
     await event.edit("`Wew ! I Love That Sticker ! Mind If i Kang It ?`")
 
     is_a_s = is_it_animated_sticker(reply_message)
-    file_ext_ns_ion = "Jaadu.png"
+    file_ext_ns_ion = "ranger.png"
     file = await borg.download_file(reply_message.media)
     uploaded_sticker = None
     if is_a_s:
@@ -130,9 +130,9 @@ async def _(event):
                     packshortname = f"Vol_{pack}_with_{user.id}"
                     #if userid == 948408212:
                        # packname = f"{user.username}'s {pack}"
-                       # packshortname = "Vol._{pack}_Jaadu_ke_locker_me"
+                       # packshortname = "Vol._{pack}_FRIDAY_ke_locker_me"
                    # else:
-                       # packname = f"Vol._{pack}_Jaadu{userid}"
+                       # packname = f"Vol._{pack}_FRIDAY{userid}"
                         #packshortname = f"Vol._{pack}_Friday_{userid}_ns"
                     if not await stickerset_exists(bot_conv, packshortname):
                         await event.edit("**Pack No. **" + str(prevv) + "** full! Making a new Pack, Vol. **" + str(pack))
