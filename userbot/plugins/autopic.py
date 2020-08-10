@@ -21,8 +21,6 @@ from time import sleep
 
 COLLECTION_STRING = [
 
-  "cute-anime-animals-wallpaper",
-
   "anime-panda-wallpaper"
 ]
 
