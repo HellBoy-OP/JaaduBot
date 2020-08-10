@@ -1,6 +1,7 @@
+#JaaduBot Exclusive
 #And Thanks To The Creator Of Autopic This Script Was Made from Snippets From That Script
 
-#Usage .autodp Im Not Responsible For Any Ban caused By This
+#Usage .autopic Im Not Responsible For Any Ban caused By This
 
 import requests , re , random 
 
