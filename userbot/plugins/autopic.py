@@ -60,7 +60,7 @@ async def main(event):
 
         await animepp()
 
-        file = await event.client.upload_file("donottouch.jpg")  
+        file = await event.client.upload_file("rangerop.jpg")  
 
         await event.client(functions.photos.UploadProfilePhotoRequest( file))
 
