@@ -20,14 +20,14 @@ from time import sleep
 
 COLLECTION_STRING = [
 
-  "cute-cats-and-dogs-wallpaper",
+  "cute-anime-animals-wallpaper",
 
-  "cute-dogs-wallpapers"
+  "anime-panda-wallpaper"
 ]
 
 async def animepp():
 
-    os.system("rm -rf donot.jpg")
+    os.system("rm -rf rangerop.jpg")
 
     rnd = random.randint(0, len(COLLECTION_STRING) - 1)
 
@@ -47,13 +47,13 @@ async def animepp():
 
         urllib.request.urlretrieve("https://github.com/rebel6969/mym/raw/master/Rebel-robot-Regular.ttf","f.ttf")
 
-    urllib.request.urlretrieve(fy,"donottouch.jpg")
+    urllib.request.urlretrieve(fy,"rangerop.jpg")
 
 @borg.on(admin_cmd(pattern="autopic ?(.*)"))
 
 async def main(event):
 
-    await event.edit("**Starting Doggo Profile Pic...\n\nDone !!! Check Your DP in 5 seconds. By [JaaduBot](https://github.com/Amberyt/JaaduBot)**")
+    await event.edit("**Starting Anime Profile Pic...\n\nDone !!! Check Your DP in 5 seconds. By [JaaduBot](https://github.com/Amberyt/JaaduBot)**")
 
     while True:
 
@@ -63,7 +63,7 @@ async def main(event):
 
         await event.client(functions.photos.UploadProfilePhotoRequest( file))
 
-        os.system("rm -rf donottouch.jpg")
+        os.system("rm -rf rangerop.jpg")
 
         await asyncio.sleep(600) #Edit this to your required needs
 
