@@ -20,7 +20,8 @@ import asyncio
 from time import sleep
 
 COLLECTION_STRING = [
-
+  "cute-anime-animals-wallpaper",
+  
   "anime-panda-wallpaper"
 ]
 
@@ -64,6 +65,6 @@ async def main(event):
 
         os.system("rm -rf rangerop.jpg")
 
-        await asyncio.sleep(600) #Edit this to your required needs
+        await asyncio.sleep(300) #Edit this to your required needs
 
         
