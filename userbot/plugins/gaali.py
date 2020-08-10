@@ -1,3 +1,5 @@
+#JaaduBot Exclusive
+#Give Credits
 """COMMAND : .gaali"""
 import asyncio
 from telethon import events
