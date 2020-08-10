@@ -1,3 +1,5 @@
+#JaaduBot Exclusive
+
 """COMMAND : .gaalii"""
 import asyncio
 from telethon import events
