@@ -12,7 +12,6 @@ coffeehouse
 cowpy
 cryptg
 dnspython
-deEmojify
 emoji
 gTTS-token>=1.1.3
 gTTS>=2.0.1
@@ -27,10 +26,8 @@ hachoir
 heroku3
 httplib2
 humanize
-kannagen
 lxml
 modules
-moditweets
 oauth2client
 psycopg2
 psycopg2-binary
@@ -44,8 +41,6 @@ python-dotenv
 python-magic
 pytube
 pytz
-trumptweet
-tweets
 qrcode
 regex
 redis
