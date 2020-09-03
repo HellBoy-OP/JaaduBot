@@ -15,6 +15,7 @@ credits to @mrconfused and @sandy1709
 import re
 from telethon import events
 from userbot import CMD_HELP
+from userbot.plugins import trumptweet , moditweet, tweets, deEmojify, kannagen
 from telethon.tl.functions.messages import ImportChatInviteRequest as Get
 from userbot.utils import admin_cmd 
 import pybase64
