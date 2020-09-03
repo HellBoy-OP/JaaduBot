@@ -77,21 +77,6 @@ async def moditweet(text):
         img = Image.open("temp.png").convert("RGB")
         img.save("temp.jpg", "jpeg")    
         return "temp.jpg"    
-
-
-async def miatweet(text):
-        r = requests.get(
-            f"https://nekobot.xyz/api/imagegen?type=tweet&text={text}&username=miakhalifa").json()
-        wew = r.get("message")
-        fridayurl = url(wew)
-        if not fridayurl:
-            return  "check syntax once more"
-        with open("temp.png", "wb") as f:
-            f.write(requests.get(wew).content)
-        img = Image.open("temp.png").convert("RGB")
-        img.save("temp.jpg", "jpeg")    
-        return "temp.jpg"    
- 
     
 async def tweets(text1,text2):
         r = requests.get(
@@ -253,8 +238,6 @@ CMD_HELP.update({
      \nUsage : Tweet with trump\
 \n\n`.cmm` (text)\
      \nUsage : Get a banner\
-\n\n`.mia` (text)\
-     \nUsage : Tweet with Mia\
 \n\n`.kanna` (text)\
      \nUsage : Kanna write for you"})
 
