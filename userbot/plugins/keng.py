@@ -8,16 +8,16 @@ from pyrogram.api.functions.messages import GetStickerSet
 from pyrogram.api.types import InputStickerSetShortName
 from pyrogram.errors.exceptions.bad_request_400 import YouBlockedUser
 
-from userbot import userbot, Message, Config, pool
+from userbot import Message, Config, pool
 
 
-@userbot.on_cmd("kang", about={
+@userbot.on_cmd("keng", about={
     'header': "kangs stickers or creates new ones",
     'usage': "Reply {tr}kang [emoji('s)] [pack number] to a sticker or "
              "an image to kang it to your userbot pack.",
     'examples': ["{tr}kang", "{tr}kang 😈", "{tr}kang 2", "{tr}kang 🧞 2"]})
 async def kang_(message: Message):
-    """kang"""
+    """keng"""
     user = message.from_user
     if not user.username:
         user.username = user.first_name or user.id
