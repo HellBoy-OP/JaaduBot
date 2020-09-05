@@ -1,3 +1,4 @@
+git+https://github.com/pyrogram/pyrogram.git@asyncio-dev
 Pillow>=5.3.0
 PyGithub
 aiofiles
