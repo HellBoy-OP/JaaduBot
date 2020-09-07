@@ -50,11 +50,12 @@ async def amireallyalive(alive):
     if ALV_PIC:
         tele = f"**Welcome To JaaduBot **\n\n"
         tele += "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-        tele += "` 🔸 Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
-        tele += "` 🔹 Bot created by:` [Ranger](https://t.me/ranger_op)\n"
+        tele += "`  🔸 Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
+        tele += "`  🔹 Bot created by:` [Ranger](https://t.me/ranger_op)\n"
         tele += f"` 🔸 JaaduBot Uptime:` {uptime}\n"
-        tele += "` 🔸 Database Status:` **All OK 👌!**\n"
-        tele += f"` 🔹 My pro owner`: {DEFAULTUSER}\n\n"
+        tele += "`  🔸 Database Status:` **All OK 👌!**\n"
+        tele += f"` 🔹 My pro owner`: {DEFAULTUSER}\n"
+        tele += f"` 🔹 [Deploy This Userbot Now](https://github.com/Amberyt/JaaduBot)\n\n"
 
         chat = await alive.get_chat()
         await alive.delete()
@@ -73,10 +74,11 @@ async def amireallyalive(alive):
         sticker.seek(0)
         await borg.send_message(alive.chat_id, f"**Welcome To JaaduBot **\n\n"
                 "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-                "` 🔸 Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
-                "` 🔹 Bot created by:` [Ranger](https://t.me/ranger_op)\n"
+                "`  🔸 Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
+                "`  🔹 Bot created by:` [Ranger](https://t.me/ranger_op)\n"
                 f"` 🔸 JaaduBot Uptime:` {uptime}\n"
-                "` 🔸 Database Status:` **All OK 👌!**\n"
-                f"` 🔹 My pro owner`: {DEFAULTUSER}\n\n", link_preview = False)
+                "`  🔸 Database Status:` **All OK 👌!**\n"
+                f"` 🔹 My pro owner`: {DEFAULTUSER}\n", link_preview = False)
+                f"` 🔹 [Deploy This Userbot Now](https://github.com/Amberyt/JaaduBot)\n\n"
         await borg.send_file(alive.chat_id, file=sticker) 
         await alive.delete()
