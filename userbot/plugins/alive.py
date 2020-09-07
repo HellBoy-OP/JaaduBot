@@ -78,6 +78,6 @@ async def amireallyalive(alive):
                 "`Bot created by:` [Ranger 🇮🇳](https://t.me/ranger_op)\n"
                 f"`Bot Uptime:` {uptime}\n"
                 "`Database Status:` **All OK 👌!**\n"
-                f"`My pro owner`: {DEFAULTUSER}\n\n"
+                f"`My pro owner`: {DEFAULTUSER}\n\n",link_preview = False)
         await borg.send_file(alive.chat_id, file=sticker) 
         await alive.delete()
