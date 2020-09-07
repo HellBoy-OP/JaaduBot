@@ -82,6 +82,5 @@ async def amireallyalive(alive):
                 f"`Bot Uptime:` {uptime}\n"
                 "`Database Status:` **All OK 👌!**\n"
                 f"`My pro owner`: {DEFAULTUSER}\n\n"
-                "[✨ GitHub Repository ✨](https://github.com/Amberyt/JaaduBot)")
         await borg.send_file(alive.chat_id, file=sticker) 
         await alive.delete()
