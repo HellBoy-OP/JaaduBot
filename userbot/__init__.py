@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 from telethon.sessions import StringSession
 from telethon import TelegramClient
 
