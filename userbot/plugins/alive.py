@@ -49,9 +49,9 @@ async def amireallyalive(alive):
     ms = (end - start).microseconds / 1000
     uptime = get_readable_time((time.time() - StartTime))
     if ALV_PIC:
-        tele = f"**Welcome To TeleBot **\n\n"
+        tele = f"**Welcome To JaaduBot **\n\n"
         tele += "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-        tele += "`Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
+        tele += "`Telethon version:` **1.15.0**\n`Python:` **3.8.3**\n"
         tele += "`Bot created by:` [Ranger 🇮🇳](https://t.me/ranger_op)\n"
         tele += f"`Bot Uptime:` {uptime}\n"
         tele += "`Database Status:` **All OK 👌!**\n"
@@ -72,9 +72,9 @@ async def amireallyalive(alive):
         img.save(sticker, "webp")
         sticker.name = "sticker.webp"
         sticker.seek(0)
-        await borg.send_message(alive.chat_id, f"**Welcome To TeleBot **\n\n"
+        await borg.send_message(alive.chat_id, f"**Welcome To JaaduBot **\n\n"
                 "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-                "`Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
+                "`Telethon version:` **1.15.0**\n`Python:` **3.8.3**\n"
                 "`Bot created by:` [Ranger 🇮🇳](https://t.me/ranger_op)\n"
                 f"`Bot Uptime:` {uptime}\n"
                 "`Database Status:` **All OK 👌!**\n"
