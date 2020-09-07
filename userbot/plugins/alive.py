@@ -1,3 +1,4 @@
+# For @Jaadubotofficial
 """Check if your userbot is working."""
 import os
 import requests
@@ -50,12 +51,13 @@ async def amireallyalive(alive):
     if ALV_PIC:
         tele = f"**Welcome To JaaduBot **\n\n"
         tele += "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-        tele += "`  🔸 Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
-        tele += "`  🔹 Bot created by:` [Ranger](https://t.me/ranger_op)\n"
-        tele += f"` 🔸 JaaduBot Uptime:` {uptime}\n"
-        tele += "`  🔸 Database Status:` **All OK 👌!**\n"
-        tele += f"` 🔹 My pro owner`: {DEFAULTUSER}\n"
-        tele += "[Deploy This Userbot Now](https://github.com/Amberyt/JaaduBot))"
+        tele += "`Telethon version:` **1.15.0**\n`Python:` **3.8.3**\n"
+        tele += "`Bot Version:`2.0\n"
+        tele += "`Bot created by:` [Ranger 🇮🇳](https://t.me/ranger_op)\n"
+        tele += f"`Bot Uptime:` {uptime}\n"
+        tele += "`Database Status:` **All OK 👌!**\n"
+        tele += f"`My pro owner`: {DEFAULTUSER}\n\n"
+        tele += "[✨ GitHub Repository ✨](https://github.com/Amberyt/JaaduBot)"
 
         chat = await alive.get_chat()
         await alive.delete()
@@ -63,7 +65,7 @@ async def amireallyalive(alive):
         await borg.send_file(alive.chat_id, ALV_PIC,caption=tele, link_preview = False)
         await alive.delete()
         return
-    req = requests.get("https://telegra.ph/file/f349d684d1bc9e7b7fab6.jpg")
+    req = requests.get("https://telegra.ph/file/5da5de219c3d71729fcb1.png")
     req.raise_for_status()
     file = BytesIO(req.content)
     file.seek(0)
@@ -74,11 +76,12 @@ async def amireallyalive(alive):
         sticker.seek(0)
         await borg.send_message(alive.chat_id, f"**Welcome To JaaduBot **\n\n"
                 "**`Hey! I'm alive. All systems online and functioning normally!`**\n\n"
-                "`Telethon version:` **1.15.0**\n`Python:` **3.8.3**\n"
-                "`Bot created by:` [Ranger](https://t.me/ranger_op)\n"
-                f"`JaaduBot Uptime:` {uptime}\n"
+                "`Telethon version:` **1.15.0**\n` 🔹 Python:` **3.8.3**\n"
+                "`Bot Version:`2.0\n"
+                "`Bot created by:` [Ranger 🇮🇳](https://t.me/ranger_op)\n"
+                f"`Bot Uptime:` {uptime}\n"
                 "`Database Status:` **All OK 👌!**\n"
                 f"`My pro owner`: {DEFAULTUSER}\n\n"
-                "    [Deploy This Userbot](https://github.com/Amberyt/JaaduBot)", link_preview = False)
+                "[✨ GitHub Repository ✨](https://github.com/Amberyt/JaaduBot)", link_preview = False)
         await borg.send_file(alive.chat_id, file=sticker) 
         await alive.delete()
