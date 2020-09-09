@@ -63,7 +63,7 @@ async def amireallyalive(alive):
         await borg.send_file(alive.chat_id, ALV_PIC,caption=tele, link_preview = False)
         await alive.delete()
         return
-    req = requests.get("https://telegra.ph/file/5da5de219c3d71729fcb1.png")
+    req = requests.get("https://telegra.ph/file/2d5f4df5546edf7af200e.jpg")
     req.raise_for_status()
     file = BytesIO(req.content)
     file.seek(0)
