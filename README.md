@@ -3,6 +3,8 @@ This is a userbot made for telegram. I made this userbot with help of all other 
  
 # The owner would not be responsible for any kind of bans due to the bot.
 
+#Alive credits to @xditya
+
 # Use this link to get string session-:
 
 # http://generatestringsession.rangerop.repl.run
