@@ -1,4 +1,5 @@
 # For @Jaadubotofficial
+#credits @telebot @xditya
 """Check if your userbot is working."""
 import os
 import requests
