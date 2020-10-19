@@ -1,4 +1,4 @@
-# For @Jaadubotofficial
+# For @Jaadubotofficia
 #credits @telebot @xditya
 """Check if your userbot is working."""
 import os
