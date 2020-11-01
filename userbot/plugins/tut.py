@@ -5,7 +5,7 @@ from telethon import events
 import random, re
 from uniborg.util import admin_cmd
 
-RUNSREACTS = ["`Want to make a userbot for yourself But Fed up of writing Long Command So here is a new way to get string session without termux.
+RUNSREACTS = ["`Want to make a userbot for yourself But Fed up of writing Long Command So here is a new way to get string session without termux.`"
 "`Firstly, Go to my.telegram.org and create an app of your choice. Then you will get app id and api`"
 "`Second Go to @Botfather and make a bot of ur choice.`"
 "`You will get a token copy that.`"
