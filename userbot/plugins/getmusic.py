@@ -30,7 +30,7 @@ async def _(event):
     if event.fwd_from:
         return
     link = event.pattern_match.group(1)
-    chat = "@SpotifyMusicDownloaderBot"
+    chat = "@SongsForYouBot"
     await event.edit("```Getting Your Music```")
     async with bot.conversation(chat) as conv:
           await asyncio.sleep(2)
