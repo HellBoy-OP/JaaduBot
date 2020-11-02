@@ -78,6 +78,7 @@ async def updater(message):
     message_one = NEW_BOT_UP_DATE_FOUND.format(
         branch_name=active_branch_name,
         changelog=changelog
+        await asyncio.sleep(30)
     )
     message_two = NEW_UP_DATE_FOUND.format(
         branch_name=active_branch_name
@@ -91,8 +92,6 @@ async def updater(message):
             document="change.log",
             caption=message_two
         )
-        os.remove("change.log")
-    else:
         await message.edit(message_one)
 
     temp_upstream_remote.fetch(active_branch_name)
