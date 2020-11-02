@@ -14,7 +14,7 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError, NoSuchPathError
 
 from .. import CMD_HELP
-from ..utils import admin_cmd, edit_or_reply, sudo_cmd
+from ..utils import admin_cmd
 from . import runcmd
 
 HEROKU_APP_NAME = Var.HEROKU_APP_NAME
