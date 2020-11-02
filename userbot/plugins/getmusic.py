@@ -1,6 +1,5 @@
-# Originally from Bothub
-# Port to UserBot by @ranger_op
-#Copyright (C) 2020 azrim.
+#made by @kraken_the_badass for @hellbot_official
+#Port to userbot by Ranger
 
 from telethon import events
 import asyncio
@@ -13,40 +12,39 @@ try:
  import subprocess
 except:
  os.system("pip install instantmusic")
- 
+
 
 
 os.system("rm -rf *.mp3")
 
 
 def bruh(name):
-    
-    os.system("instantmusic -q -s "+name)
-    
 
+    os.system("instantmusic -q -s "+name)
 
 @register(outgoing=True, pattern="^.song(?: |$)(.*)")
-async def _(event):
-    if event.fwd_from:
+async def getmusic(so):
+    if so.fwd_from:
         return
-    link = event.pattern_match.group(1)
+    song = so.pattern_match.group(1)
     chat = "@SongsForYouBot"
-    await event.edit("```Getting Your Music```")
+    link = f"/song {song}"
+    await so.edit("🔹Ok wait... 📡Searching your song🔸")
     async with bot.conversation(chat) as conv:
           await asyncio.sleep(2)
-          await event.edit("`Downloading music taking some times,  Stay Tuned.....`")
+          await so.edit("📥Downloading...Please wait🤙")
           try:
-              response = conv.wait_event(events.NewMessage(incoming=True,from_users=752979930))
-              await bot.send_message(chat, link)
-              respond = await response
+              msg = await conv.send_message(link)
+              response = await conv.get_response()
+              respond = await conv.get_response()
+              """ - don't spam notif - """
+              await bot.send_read_acknowledge(conv.chat_id)
           except YouBlockedUserError:
-              await event.reply("```Please unblock @SpotifyMusicDownloaderBot and try again```")
+              await so.edit("Please unblock @SongsForYouBot and try searching again🤐")
               return
-          await event.delete()
-          await bot.forward_messages(event.chat_id, respond.message)
-
-CMD_HELP.update({
-        "music":
-        ".song`<Artist - Song Title>\
-            \n\n\nUsage:For searching songs from Spotify."
-})
+          await so.edit("Ohh.. I got something!! Wait sending😋🤙")
+          await asyncio.sleep(3)
+          await bot.send_file(so.chat_id, respond)
+    await so.client.delete_messages(conv.chat_id,
+                                       [msg.id, response.id, respond.id])
+    await so.delete()
